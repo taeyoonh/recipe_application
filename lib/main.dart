@@ -83,7 +83,7 @@ class _MyAppState extends State<MyApp> {
               padding: const EdgeInsets.all(20.0),
               child: TextField(
                 decoration: const InputDecoration(
-                  hintText: '검색어를 입력해주세요.',
+                  hintText: '검색어를 입력해주세요',
                   border: OutlineInputBorder(),
                 ),
                 onChanged: (value) {
