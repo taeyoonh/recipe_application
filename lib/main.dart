@@ -1,184 +1,113 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const App());
 }
 
-String searchText = '';
-
-List<String> items = [
-  'Item 1',
-  'Item 2',
-  'Item 3',
-  'Item 4',
-  'Item 5',
-  'Item 6',
-  'Item 7',
-  'Item 8',
-  'Item 9',
-  'Item 10',
-  'Item 11',
-  'Item 12',
-];
-
-List<String> imagePaths = [
-  'assets/images/image_1.JPG',
-  'assets/images/image_2.JPG',
-  'assets/images/image_3.JPG',
-  'assets/images/image_4.JPG',
-  'assets/images/image_5.JPG',
-  'assets/images/image_6.JPG',
-  'assets/images/image_7.JPG',
-  'assets/images/image_8.JPG',
-  'assets/images/image_9.JPG',
-  'assets/images/image_10.JPG',
-  'assets/images/image_11.JPG',
-  'assets/images/image_12.JPG',
-];
-
-List<String> selectedItems = [];
-
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  void toggleSelection(String item) {
-    setState(() {
-      if (selectedItems.contains(item)) {
-        selectedItems.remove(item);
-      } else {
-        selectedItems.add(item);
-      }
-    });
-  }
-
-  List<String> getFilteredItems() {
-    if (searchText.isEmpty) {
-      return items;
-    } else {
-      return items
-          .where(
-              (item) => item.toLowerCase().contains(searchText.toLowerCase()))
-          .toList();
-    }
-  }
+class App extends StatelessWidget {
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<String> filteredItems = getFilteredItems();
-
     return MaterialApp(
-      title: 'searching',
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('헤헤 재밌다'),
+          backgroundColor: const Color.fromARGB(183, 87, 202, 147),
+          title: const Text(
+            '루루카가 알려주는 냉장고 레시피',
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+          ),
+          centerTitle: true,
+          toolbarHeight: 80,
         ),
-        body: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: TextField(
-                decoration: const InputDecoration(
-                  hintText: '검색어를 입력해주세요.',
-                  border: OutlineInputBorder(),
-                ),
-                onChanged: (value) {
-                  setState(() {
-                    searchText = value;
-                  });
-                },
-              ),
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+        body: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 20,
             ),
-            Expanded(
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  mainAxisSpacing: 20,
-                  crossAxisSpacing: 20,
+            child: Column(
+              children: [
+                Container(
+                  height: 200,
+                  width: 200,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/kerby.gif'),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
-                itemCount: filteredItems.length,
-                itemBuilder: (BuildContext context, int index) {
-                  String item = filteredItems[index];
-                  int ind = items.indexOf(item);
-                  bool isSelected = selectedItems.contains(item);
-                  return GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        toggleSelection(item);
-                      });
-                    },
-                    child: Card(
-                      elevation: 3,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius:
-                            BorderRadius.all(Radius.elliptical(20, 20)),
-                      ),
-                      child: Stack(
-                        children: [
-                          SizedBox(
-                            width: double.infinity,
-                            height: double.infinity,
-                            child: Image.asset(
-                              imagePaths[ind], // 여기에 이미지 파일의 경로를 지정해주세요.
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                          Positioned.fill(
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                color: Colors.transparent,
-                                borderRadius:
-                                    BorderRadius.all(Radius.elliptical(20, 20)),
-                              ),
-                              child: Align(
-                                alignment: const Alignment(1, 1),
-                                child: Text(
-                                  items[ind],
-                                  style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                              child: Checkbox(
-                                  value: isSelected,
-                                  onChanged: (bool? value) {
-                                    setState(() {
-                                      toggleSelection(items[index]);
-                                    });
-                                  }))
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(199, 39, 193, 98),
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 10,
+                            offset: const Offset(10, 10),
+                            color: Colors.black.withOpacity(0.2),
+                          )
                         ],
                       ),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 65,
+                        horizontal: 84,
+                      ),
+                      child: const Text(
+                        '루루카의 냉장고 안 \n 지금 바로 확인',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 255, 255, 255),
+                            fontSize: 22,
+                            fontWeight: FontWeight.w600),
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(199, 39, 193, 98),
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 10,
+                            offset: const Offset(10, 10),
+                            color: Colors.black.withOpacity(0.2),
+                          )
+                        ],
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 65,
+                        horizontal: 50,
+                      ),
+                      child: const Text(
+                        '루루카의 비밀 요리 레시피 \n 지금 바로 확인',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 255, 255, 255),
+                            fontSize: 22,
+                            fontWeight: FontWeight.w600),
+                      ),
                     ),
-                  );
-                },
-              ),
-            ),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: () => 11,
-                  child: const Text("선택항목 보기"),
-                ),
-                const SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () => 11,
-                  child: const Text("레시피 찾기!"),
-                ),
+                  ],
+                )
               ],
-            ),
-            const SizedBox(height: 20),
-          ],
-        ),
+            )),
+      ),
+    );
+  }
+}
+
       ),
     );
   }
