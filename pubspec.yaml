@@ -40,6 +40,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  http: ^0.13.5
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
@@ -52,20 +53,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-  assets:
-    - assets/images/image_1.JPG
-    - assets/images/image_2.JPG
-    - assets/images/image_3.JPG
-    - assets/images/image_4.JPG
-    - assets/images/image_5.JPG
-    - assets/images/image_6.JPG
-    - assets/images/image_7.JPG
-    - assets/images/image_8.JPG
-    - assets/images/image_9.JPG
-    - assets/images/image_10.JPG
-    - assets/images/image_11.JPG
-    - assets/images/image_12.JPG
-
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
@@ -73,8 +60,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+   - assets/kerby.gif
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
